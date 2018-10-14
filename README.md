@@ -1,6 +1,10 @@
 # ComcastInterviewQuestion
 Number Adder
 
+# Requirements
+- Java 8
+- Maven 3
+
 # Command To Build
 
 ```mvn clean compile assembly:single```
