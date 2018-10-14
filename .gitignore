@@ -13,8 +13,8 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
+*.jar
 *.nar
 *.ear
 *.zip
@@ -26,5 +26,4 @@ hs_err_pid*
 
 .idea/
 ComcastInterviewQuestion.iml
-pom.xml
 target/

@@ -1,9 +1,10 @@
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.google.common.base.CharMatcher;
-import java.io.IOException;
+
 import java.nio.file.Paths;
 import java.util.Scanner;
+
 import static java.nio.file.Files.readAllBytes;
 
 /**
@@ -19,10 +20,10 @@ public class NumberAdder {
     public static long addNumbers(String input, boolean includeLetters) throws Exception {
 
         // Remove all white space from string
-        input = input.replaceAll("\\s+","");
+        input = input.replaceAll("\\s+", "");
 
         // If -x is not included, we will strip all the non digit characters from the string
-        if(!includeLetters){
+        if (!includeLetters) {
             input = CharMatcher.inRange('0', '9').retainFrom(input);
         }
 
@@ -37,10 +38,9 @@ public class NumberAdder {
             int value = 0;
 
             // If character is not a digit, we will convert the character into its hexdecimal value
-            if(!Character.isDigit(c)){
+            if (!Character.isDigit(c)) {
                 value = convertCharacterToHexValue(c);
-            }
-            else{
+            } else {
                 value = Character.getNumericValue(c);
             }
 
@@ -54,19 +54,17 @@ public class NumberAdder {
 
         try {
             return Integer.parseInt(Character.toString(unconvertedCharacter), 16);
-        }
-        catch (NumberFormatException e){
-            throw new Exception("Sorry your input was invalid. '"+unconvertedCharacter + "' is not a valid Hex character. Cannot convert into integer value.");
+        } catch (NumberFormatException e) {
+            throw new Exception("Sorry your input was invalid. '" + unconvertedCharacter + "' is not a valid Hex character. Cannot convert into integer value.");
         }
     }
 
     public static void main(String[] args) throws Exception {
         NumberAdder numberAdder = new NumberAdder();
-        String[] argv = {"-x"};
         JCommander.newBuilder()
                 .addObject(numberAdder)
                 .build()
-                .parse(argv);
+                .parse(args);
 
         String input;
 
@@ -81,7 +79,7 @@ public class NumberAdder {
 
         } else {
             System.out.print("Please enter your string: ");
-            input =  scanner.nextLine();
+            input = scanner.nextLine();
         }
 
         System.out.println(addNumbers(input, hex));
