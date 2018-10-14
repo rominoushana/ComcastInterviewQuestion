@@ -2,6 +2,7 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.google.common.base.CharMatcher;
 
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
@@ -75,7 +76,12 @@ public class NumberAdder {
         if (file) {
             System.out.println("Please enter your file path: ");
             String filePath = scanner.nextLine();
-            input = new String(readAllBytes(Paths.get(filePath)));
+            try {
+                input = new String(readAllBytes(Paths.get(filePath)));
+            }
+            catch (NoSuchFileException e){
+                throw new Exception("The file path you provided is invalid. No such file exists.");
+            }
 
         } else {
             System.out.print("Please enter your string: ");
