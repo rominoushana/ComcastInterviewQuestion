@@ -1,5 +1,3 @@
-# ComcastInterviewQuestion
-
 # Sum Digits of String
 Write a program that will iterate over the input, adding the digits, and returning the result.
 
